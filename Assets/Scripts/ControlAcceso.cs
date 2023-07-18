@@ -183,7 +183,7 @@ public class ControlAcceso : MonoBehaviour
         print("Entra a registrar");
         WWW conneccion = new WWW("https://virtual.espinosa.edu.pe/proyecto/espinosa3d/registro.php?usuario=" + txtUsuario1.text + "&correo=" + txtCorreo.text + "&dni=" + txtDni.text + "&clave=" + txtClave1.text);
         yield return (conneccion);
-        print("Dato de conneccion:" + conneccion);
+        print("Dato de conneccion:" + conneccion.text);
         if (conneccion.text == "999")
         {
             print("Correo incorrecto");
@@ -197,7 +197,7 @@ public class ControlAcceso : MonoBehaviour
         }
         else if (conneccion.text == "401")
         {
-            Debug.LogError("Error en la conecci�n con la base de datos");
+            Debug.LogError("Error en la conección con la base de datos");
             panelPago.SetActive(true);
             //textError.text = "Error en la conecci�n con la base de datos";
             MostrarError("Error en la conecci�n con la base de datos");
@@ -209,7 +209,7 @@ public class ControlAcceso : MonoBehaviour
                 string[] nDatos = conneccion.text.Split("|");
                 if (nDatos[0] == "201")
                 {
-                    print("registr� correctamente [conneccion.text]:" + nDatos[1]);
+                    print("registró correctamente [conneccion.text]:" + nDatos[1]);
 
                     idUsuario = int.Parse(nDatos[1]);
                     PlayerPrefs.SetInt("varglobal_idUsuario", idUsuario);
